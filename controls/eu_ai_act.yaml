@@ -1,0 +1,165 @@
+framework:
+  id: EUAIACT
+  name: "EU AI Act — provider obligations (risk-tiered)"
+  version: "Regulation (EU) 2024/1689"
+  authority: "European Union"
+  note: >
+    Practitioner mapping of the obligations most often engineered against. This
+    is NOT legal advice, does not reproduce the regulation's text, and does not
+    determine legal classification. Included because it is the reference point
+    most multinational employers in the Gulf benchmark against; a Saudi-only
+    system may have no EU obligation at all.
+
+risk_tiers:
+  prohibited:
+    when_any:
+      - field: social_scoring
+        equals: true
+      - field: emotion_inference_workplace
+        equals: true
+  high:
+    when_any:
+      - field: affects_legal_rights
+        equals: true
+      - field: critical_infrastructure
+        equals: true
+      - field: biometric
+        equals: true
+      - field: used_in_employment_decisions
+        equals: true
+  limited:
+    when_any:
+      - field: user_facing
+        equals: true
+  minimal:
+    when_any: []
+
+controls:
+  - id: EUAIACT-T1
+    title: "Transparency — users informed they interact with an AI system"
+    theme: "Transparency obligations"
+    intent: >
+      People interacting with the system are informed of that fact unless it is
+      obvious from the context.
+    applies_when:
+      - field: user_facing
+        equals: true
+    weight: 3
+    evidence:
+      - "Disclosure in the interface"
+
+  - id: EUAIACT-T2
+    title: "Transparency — AI-generated content marked"
+    theme: "Transparency obligations"
+    intent: >
+      Synthetic text, image, or audio output is detectable as machine-generated
+      where it could be mistaken for human-authored material.
+    applies_when:
+      - field: generates_content
+        equals: true
+    weight: 2
+    evidence:
+      - "Marking or labelling mechanism"
+
+  - id: EUAIACT-H1
+    title: "Risk management system across the lifecycle"
+    theme: "High-risk obligations"
+    intent: >
+      A continuous, documented risk management process runs for the life of the
+      system, not a one-time sign-off.
+    applies_when:
+      - field: _risk_tier
+        equals: high
+    weight: 3
+    evidence:
+      - "Risk management plan with review cadence"
+
+  - id: EUAIACT-H2
+    title: "Data governance for training, validation and testing data"
+    theme: "High-risk obligations"
+    intent: >
+      Datasets are relevant, representative, and examined for bias, with gaps
+      documented.
+    applies_when:
+      - field: _risk_tier
+        equals: high
+    weight: 3
+    evidence:
+      - "Dataset documentation including bias examination"
+
+  - id: EUAIACT-H3
+    title: "Technical documentation maintained"
+    theme: "High-risk obligations"
+    intent: >
+      Documentation sufficient to assess conformity exists before placing the
+      system on the market and is kept current.
+    applies_when:
+      - field: _risk_tier
+        equals: high
+    weight: 3
+    evidence:
+      - "Technical documentation pack with change history"
+
+  - id: EUAIACT-H4
+    title: "Automatic logging of events"
+    theme: "High-risk obligations"
+    intent: >
+      The system logs events automatically over its lifetime to enable
+      traceability.
+    applies_when:
+      - field: _risk_tier
+        equals: high
+    weight: 3
+    evidence:
+      - "Automatic log configuration and retention"
+
+  - id: EUAIACT-H5
+    title: "Human oversight designed in"
+    theme: "High-risk obligations"
+    intent: >
+      Oversight measures are built into the system so a human can intervene,
+      interrupt, or disregard output.
+    applies_when:
+      - field: _risk_tier
+        equals: high
+    weight: 3
+    evidence:
+      - "Oversight controls present in the interface"
+      - "Operator instructions for intervention"
+
+  - id: EUAIACT-H6
+    title: "Accuracy, robustness and cybersecurity"
+    theme: "High-risk obligations"
+    intent: >
+      Declared accuracy levels, resilience to error, and resistance to attempts
+      to manipulate the system are established and tested.
+    applies_when:
+      - field: _risk_tier
+        equals: high
+    weight: 3
+    evidence:
+      - "Declared accuracy metrics"
+      - "Adversarial or robustness test results"
+
+  - id: EUAIACT-H7
+    title: "Post-market monitoring"
+    theme: "High-risk obligations"
+    intent: >
+      Performance in the field is collected and reviewed after deployment.
+    applies_when:
+      - field: _risk_tier
+        equals: high
+    weight: 2
+    evidence:
+      - "Post-market monitoring plan and collected data"
+
+  - id: EUAIACT-P1
+    title: "Prohibited practice screening"
+    theme: "Prohibited practices"
+    intent: >
+      The system has been screened against the prohibited practice list and the
+      result is recorded.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Screening record with date and outcome"

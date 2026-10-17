@@ -1,0 +1,279 @@
+framework:
+  id: ISO42001
+  name: "ISO/IEC 42001:2023 — Artificial Intelligence Management System"
+  version: "2023"
+  authority: "ISO/IEC"
+  note: >
+    Practitioner mapping drafted from the publicly documented structure of the
+    standard (clauses 4-10 and the Annex A control themes). This is NOT the
+    official normative text and is not a substitute for the purchased standard
+    or for certified audit. Control identifiers follow the Annex A numbering
+    convention for traceability only.
+
+controls:
+  - id: ISO42001-A.2.2
+    title: "AI policy"
+    theme: "Policies for AI"
+    intent: >
+      The organisation has a documented, approved AI policy that states its
+      objectives, its risk appetite, and who owns AI decisions.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Approved AI policy document with version and approval date"
+      - "Evidence of periodic review"
+
+  - id: ISO42001-A.2.4
+    title: "Alignment with other organisational policies"
+    theme: "Policies for AI"
+    intent: >
+      The AI policy does not contradict existing security, privacy, and
+      procurement policies, and cross-references them.
+    applies_when: []
+    weight: 1
+    evidence:
+      - "Cross-reference matrix between the AI policy and existing policies"
+
+  - id: ISO42001-A.3.2
+    title: "AI roles and responsibilities"
+    theme: "Internal organisation"
+    intent: >
+      Named individuals are accountable for the AI system across its lifecycle,
+      not a diffuse team.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "RACI matrix naming system owner, data owner, and risk owner"
+
+  - id: ISO42001-A.3.3
+    title: "Reporting of concerns"
+    theme: "Internal organisation"
+    intent: >
+      Staff and users have a defined route to raise concerns about AI behaviour
+      without going through the system owner.
+    applies_when: []
+    weight: 2
+    evidence:
+      - "Documented escalation channel"
+      - "Log of raised concerns and their resolution"
+
+  - id: ISO42001-A.4.2
+    title: "Resource documentation"
+    theme: "Resources for AI systems"
+    intent: >
+      The compute, data, tooling, and human resources the system depends on are
+      documented, including third-party dependencies.
+    applies_when: []
+    weight: 2
+    evidence:
+      - "Inventory of models, APIs, datastores, and vendors"
+
+  - id: ISO42001-A.4.3
+    title: "Data resources"
+    theme: "Resources for AI systems"
+    intent: >
+      Every dataset the system reads or writes is identified, with its origin,
+      lawful basis, and quality characteristics.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Data inventory with source and lawful basis per dataset"
+      - "Documented data quality criteria"
+
+  - id: ISO42001-A.4.4
+    title: "Tooling resources"
+    theme: "Resources for AI systems"
+    intent: >
+      Third-party models, libraries, and services are version-pinned and their
+      terms of use are recorded.
+    applies_when:
+      - field: uses_third_party_model
+        equals: true
+    weight: 2
+    evidence:
+      - "Pinned model and library versions"
+      - "Vendor terms and data-handling commitments on file"
+
+  - id: ISO42001-A.5.2
+    title: "AI system impact assessment process"
+    theme: "Impact assessment"
+    intent: >
+      A repeatable process exists for assessing the impact of the system on
+      individuals and groups, performed before deployment and after material
+      change.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Documented impact assessment procedure"
+      - "At least one completed assessment for this system"
+
+  - id: ISO42001-A.5.4
+    title: "Assessing impacts on individuals"
+    theme: "Impact assessment"
+    intent: >
+      The assessment specifically considers harms to individuals, including
+      those who are not direct users of the system.
+    applies_when:
+      - field: user_facing
+        equals: true
+    weight: 3
+    evidence:
+      - "Impact assessment section covering affected individuals"
+
+  - id: ISO42001-A.6.1.2
+    title: "AI system lifecycle objectives"
+    theme: "AI system lifecycle"
+    intent: >
+      Objectives and acceptance criteria are defined before build, so that
+      'working' is measurable rather than subjective.
+    applies_when: []
+    weight: 2
+    evidence:
+      - "Written acceptance criteria with thresholds"
+
+  - id: ISO42001-A.6.2.2
+    title: "Documentation of AI system design"
+    theme: "AI system lifecycle"
+    intent: >
+      Architecture, data flows, model choices, and their rationale are written
+      down and kept current.
+    applies_when: []
+    weight: 2
+    evidence:
+      - "Design document including data-flow diagram"
+
+  - id: ISO42001-A.6.2.4
+    title: "Verification and validation"
+    theme: "AI system lifecycle"
+    intent: >
+      The system is tested against its acceptance criteria with a documented
+      method and recorded results, not ad-hoc trials.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Test plan with defined cases"
+      - "Test results with pass/fail per case"
+
+  - id: ISO42001-A.6.2.6
+    title: "AI system operation and monitoring"
+    theme: "AI system lifecycle"
+    intent: >
+      Production behaviour is monitored against defined signals, with
+      thresholds that trigger human review.
+    applies_when:
+      - field: deployment
+        equals: production
+    weight: 3
+    evidence:
+      - "Monitoring dashboard or alert configuration"
+      - "Defined thresholds and escalation owner"
+
+  - id: ISO42001-A.6.2.7
+    title: "AI system technical documentation"
+    theme: "AI system lifecycle"
+    intent: >
+      Documentation sufficient for a competent third party to understand and
+      audit the system exists and is retained.
+    applies_when: []
+    weight: 2
+    evidence:
+      - "Technical documentation pack"
+
+  - id: ISO42001-A.6.2.8
+    title: "Event logging"
+    theme: "AI system lifecycle"
+    intent: >
+      The system records what it did, when, on whose behalf, and on what input,
+      with retention adequate for investigation.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Audit log schema"
+      - "Retention period configured and enforced"
+
+  - id: ISO42001-A.7.2
+    title: "Data for development and enhancement"
+    theme: "Data for AI systems"
+    intent: >
+      Data used to build or tune the system is documented, and its use is
+      permitted by its original collection basis.
+    applies_when:
+      - field: training_on_user_data
+        equals: true
+    weight: 3
+    evidence:
+      - "Documented lawful basis for development use"
+      - "Record of consent or contractual permission"
+
+  - id: ISO42001-A.7.4
+    title: "Quality of data"
+    theme: "Data for AI systems"
+    intent: >
+      Data quality is measured, not assumed — completeness, accuracy, and
+      representativeness have recorded values.
+    applies_when: []
+    weight: 2
+    evidence:
+      - "Data quality metrics with measured values"
+
+  - id: ISO42001-A.7.5
+    title: "Data provenance"
+    theme: "Data for AI systems"
+    intent: >
+      The origin and chain of custody of each dataset can be reconstructed.
+    applies_when: []
+    weight: 2
+    evidence:
+      - "Provenance records per dataset"
+
+  - id: ISO42001-A.8.2
+    title: "Information for interested parties"
+    theme: "Information for interested parties"
+    intent: >
+      Users and affected parties are told, in language they understand, that
+      they are interacting with an AI system and what its limits are.
+    applies_when:
+      - field: user_facing
+        equals: true
+    weight: 3
+    evidence:
+      - "User-facing AI disclosure text"
+      - "Documented limitations communicated to users"
+
+  - id: ISO42001-A.8.3
+    title: "Reporting of AI system failures"
+    theme: "Information for interested parties"
+    intent: >
+      External parties can report incorrect or harmful output, and those
+      reports reach a named owner.
+    applies_when:
+      - field: user_facing
+        equals: true
+    weight: 2
+    evidence:
+      - "Feedback or incident reporting channel"
+
+  - id: ISO42001-A.9.2
+    title: "Processes for responsible use"
+    theme: "Responsible use"
+    intent: >
+      Permitted and prohibited uses are defined, and the system is constrained
+      to the permitted ones rather than relying on user discretion.
+    applies_when: []
+    weight: 2
+    evidence:
+      - "Acceptable-use definition"
+      - "Technical or procedural enforcement of limits"
+
+  - id: ISO42001-A.10.2
+    title: "Allocation of responsibility across the supply chain"
+    theme: "Third-party relationships"
+    intent: >
+      Where a third party supplies the model or infrastructure, responsibility
+      for each obligation is allocated in writing.
+    applies_when:
+      - field: uses_third_party_model
+        equals: true
+    weight: 3
+    evidence:
+      - "Contract or DPA allocating AI responsibilities"

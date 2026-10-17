@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.venv/
+# reports/ is committed: the example assessment is part of the deliverable
+!reports/.gitkeep

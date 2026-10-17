@@ -1,0 +1,150 @@
+framework:
+  id: PDPL
+  name: "Personal Data Protection Law (Saudi Arabia) — AI-relevant obligations"
+  version: "as amended"
+  authority: "Saudi Data & AI Authority (SDAIA)"
+  note: >
+    Practitioner mapping of PDPL obligations that bear on AI systems. This is a
+    compliance-engineering aid, NOT legal advice and NOT a complete rendering of
+    the law or its implementing regulations. Confirm current requirements with
+    a qualified Saudi data protection practitioner before relying on it.
+
+controls:
+  - id: PDPL-01
+    title: "Lawful basis for processing identified"
+    theme: "Lawfulness"
+    intent: >
+      Each processing purpose has an identified lawful basis recorded before
+      processing begins.
+    applies_when:
+      - field: processes_personal_data
+        equals: true
+    weight: 3
+    evidence:
+      - "Record of processing activities with basis per purpose"
+
+  - id: PDPL-02
+    title: "Purpose limitation enforced"
+    theme: "Lawfulness"
+    intent: >
+      Personal data is not reused for a purpose incompatible with the one it
+      was collected for — including reuse for model development.
+    applies_when:
+      - field: processes_personal_data
+        equals: true
+    weight: 3
+    evidence:
+      - "Documented purposes"
+      - "Technical controls preventing out-of-purpose access"
+
+  - id: PDPL-03
+    title: "Privacy notice provided to data subjects"
+    theme: "Transparency"
+    intent: >
+      Data subjects are informed of what is collected, why, who it is shared
+      with, and how long it is kept.
+    applies_when:
+      - field: processes_personal_data
+        equals: true
+    weight: 3
+    evidence:
+      - "Published privacy notice in Arabic"
+
+  - id: PDPL-04
+    title: "Data subject rights are operable"
+    theme: "Data subject rights"
+    intent: >
+      Access, correction, and deletion requests can actually be fulfilled by
+      the system within the required period — including data held in vector
+      stores, caches, and logs.
+    applies_when:
+      - field: processes_personal_data
+        equals: true
+    weight: 3
+    evidence:
+      - "Documented request procedure with response deadline"
+      - "Demonstrated deletion across all stores including derived indexes"
+
+  - id: PDPL-05
+    title: "Retention limits defined and enforced"
+    theme: "Data lifecycle"
+    intent: >
+      Personal data, including conversation logs and prompts, has a defined
+      retention period that is automatically enforced.
+    applies_when:
+      - field: processes_personal_data
+        equals: true
+    weight: 2
+    evidence:
+      - "Retention schedule"
+      - "Automated deletion job or policy configuration"
+
+  - id: PDPL-06
+    title: "Cross-border transfer assessed"
+    theme: "Transfers"
+    intent: >
+      Where personal data leaves the Kingdom — including by being sent to a
+      model API hosted abroad — the transfer condition is identified and
+      documented.
+    applies_when:
+      - field: data_crosses_border
+        equals: true
+    weight: 3
+    evidence:
+      - "Transfer impact assessment"
+      - "Identified transfer mechanism and destination jurisdiction"
+
+  - id: PDPL-07
+    title: "Processor obligations flowed down"
+    theme: "Third parties"
+    intent: >
+      Vendors processing personal data on the organisation's behalf are bound
+      by written terms covering security, sub-processing, and deletion.
+    applies_when:
+      - field: uses_third_party_model
+        equals: true
+    weight: 3
+    evidence:
+      - "Data processing agreement with each processor"
+
+  - id: PDPL-08
+    title: "Breach detection and notification readiness"
+    theme: "Incident"
+    intent: >
+      A personal data breach can be detected, assessed, and notified within the
+      required timeframe.
+    applies_when:
+      - field: processes_personal_data
+        equals: true
+    weight: 3
+    evidence:
+      - "Breach response procedure with notification timeline"
+      - "Evidence of at least one rehearsal"
+
+  - id: PDPL-09
+    title: "Impact assessment for high-risk processing"
+    theme: "Accountability"
+    intent: >
+      Processing likely to carry high risk to individuals is assessed before it
+      begins.
+    applies_when:
+      - field: processes_personal_data
+        equals: true
+      - field: automated_decision_making
+        equals: true
+    weight: 3
+    evidence:
+      - "Completed data protection impact assessment"
+
+  - id: PDPL-10
+    title: "Record of processing activities maintained"
+    theme: "Accountability"
+    intent: >
+      A current register of processing activities exists and reflects what the
+      system actually does.
+    applies_when:
+      - field: processes_personal_data
+        equals: true
+    weight: 2
+    evidence:
+      - "Record of processing activities, dated and current"

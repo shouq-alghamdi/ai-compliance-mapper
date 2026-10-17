@@ -1,0 +1,195 @@
+framework:
+  id: SDAIA
+  name: "SDAIA AI Ethics Principles (Kingdom of Saudi Arabia)"
+  version: "v1"
+  authority: "Saudi Data & AI Authority (SDAIA)"
+  note: >
+    Practitioner mapping of the seven published SDAIA AI ethics principles into
+    assessable controls. The principles are SDAIA's; the control decomposition,
+    weights, and evidence expectations here are this project's interpretation
+    and carry no endorsement. Verify against the current SDAIA publication
+    before relying on this for a real assessment.
+
+controls:
+  - id: SDAIA-01.1
+    title: "Fairness — bias assessment performed"
+    theme: "Fairness"
+    intent: >
+      The system has been tested for disparate behaviour across the groups it
+      serves, with recorded results rather than an assumption of neutrality.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Bias test results across relevant groups"
+      - "Definition of the groups considered and why"
+
+  - id: SDAIA-01.2
+    title: "Fairness — representativeness of data"
+    theme: "Fairness"
+    intent: >
+      Data used by the system reflects the population it will serve, including
+      language and dialect coverage where relevant.
+    applies_when: []
+    weight: 2
+    evidence:
+      - "Coverage analysis of the data against the served population"
+
+  - id: SDAIA-02.1
+    title: "Privacy & security — personal data minimisation"
+    theme: "Privacy and Security"
+    intent: >
+      The system processes only the personal data it needs, and that need is
+      documented per field.
+    applies_when:
+      - field: processes_personal_data
+        equals: true
+    weight: 3
+    evidence:
+      - "Field-level justification for personal data collected"
+
+  - id: SDAIA-02.2
+    title: "Privacy & security — protection in transit and at rest"
+    theme: "Privacy and Security"
+    intent: >
+      Data is encrypted in transit and at rest, and access is restricted by
+      role.
+    applies_when:
+      - field: processes_personal_data
+        equals: true
+    weight: 3
+    evidence:
+      - "Encryption configuration"
+      - "Role-based access control matrix"
+
+  - id: SDAIA-02.3
+    title: "Privacy & security — prompt and output handling"
+    theme: "Privacy and Security"
+    intent: >
+      Personal data sent to or returned by a model provider is controlled, and
+      retention by the provider is known and acceptable.
+    applies_when:
+      - field: uses_third_party_model
+        equals: true
+    weight: 3
+    evidence:
+      - "Provider data-retention terms on file"
+      - "Redaction or minimisation applied before sending"
+
+  - id: SDAIA-03.1
+    title: "Humanity — human oversight of consequential output"
+    theme: "Humanity"
+    intent: >
+      A human can review, override, and reverse the system's consequential
+      output, and is expected to.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Documented oversight procedure with named reviewer role"
+      - "Evidence that overrides occur and are logged"
+
+  - id: SDAIA-03.2
+    title: "Humanity — no deceptive anthropomorphism"
+    theme: "Humanity"
+    intent: >
+      The system does not present itself as a human being.
+    applies_when:
+      - field: user_facing
+        equals: true
+    weight: 2
+    evidence:
+      - "AI identity disclosure in the interface"
+
+  - id: SDAIA-04.1
+    title: "Social & environmental benefit — stated purpose and benefit"
+    theme: "Social and Environmental Benefits"
+    intent: >
+      The intended benefit of the system is stated, and foreseeable negative
+      externalities are identified.
+    applies_when: []
+    weight: 1
+    evidence:
+      - "Benefit statement with identified externalities"
+
+  - id: SDAIA-05.1
+    title: "Reliability & safety — performance measured against a baseline"
+    theme: "Reliability and Safety"
+    intent: >
+      The system's accuracy, grounding, or error rate is measured against a
+      defined test set, with a stated acceptable threshold.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Evaluation set with size and construction method"
+      - "Measured results against the threshold"
+
+  - id: SDAIA-05.2
+    title: "Reliability & safety — behaviour under failure"
+    theme: "Reliability and Safety"
+    intent: >
+      The system fails safely: when it cannot answer reliably it declines or
+      escalates rather than producing a confident fabrication.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Refusal or escalation behaviour tested and recorded"
+      - "Measured fabrication rate"
+
+  - id: SDAIA-05.3
+    title: "Reliability & safety — change control"
+    theme: "Reliability and Safety"
+    intent: >
+      Model, prompt, and data changes go through review and re-testing before
+      reaching production.
+    applies_when:
+      - field: deployment
+        equals: production
+    weight: 2
+    evidence:
+      - "Change control record for AI components"
+
+  - id: SDAIA-06.1
+    title: "Transparency & explainability — disclosure of AI involvement"
+    theme: "Transparency and Explainability"
+    intent: >
+      Affected people are told when AI contributed to an output that concerns
+      them.
+    applies_when:
+      - field: user_facing
+        equals: true
+    weight: 3
+    evidence:
+      - "Disclosure text and where it appears"
+
+  - id: SDAIA-06.2
+    title: "Transparency & explainability — traceable reasoning or sourcing"
+    theme: "Transparency and Explainability"
+    intent: >
+      Output can be traced to its source material or to the factors that drove
+      it, to a level a non-expert can follow.
+    applies_when: []
+    weight: 2
+    evidence:
+      - "Source citation or factor attribution in output"
+
+  - id: SDAIA-07.1
+    title: "Accountability — named accountable owner"
+    theme: "Accountability and Responsibility"
+    intent: >
+      A specific person, not a department, is accountable for the system's
+      behaviour in production.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Named owner recorded with date of assignment"
+
+  - id: SDAIA-07.2
+    title: "Accountability — auditable record of decisions"
+    theme: "Accountability and Responsibility"
+    intent: >
+      Consequential actions taken by or on the advice of the system are logged
+      in a way that supports after-the-fact review.
+    applies_when: []
+    weight: 3
+    evidence:
+      - "Audit trail covering AI-influenced actions"
+      - "Retention period sufficient for review"

@@ -1,0 +1,117 @@
+# Example system profile.
+#
+# Modelled on a real production deployment: an AI-assisted property management
+# platform serving a portfolio of residential and commercial units, with an
+# Arabic-language advisory assistant over the tenancy and maintenance records.
+#
+# The client, the portfolio figures, and the control statuses below are
+# anonymised and adjusted. Treat this as a worked example of the method, not as
+# a published assessment of any real organisation.
+
+system:
+  name: "Property Portfolio AI Platform (anonymised)"
+  owner: "Head of Operations"
+  purpose: >
+    Digitises tenancy, maintenance, and contract management for a mid-size
+    property portfolio, with a retrieval-based Arabic assistant that answers
+    operational questions over the organisation's own records and surfaces
+    contract terms to non-technical staff.
+  deployment: production
+
+characteristics:
+  processes_personal_data: true        # tenant names, national IDs, contact details
+  automated_decision_making: false     # the assistant advises; staff decide
+  human_oversight: full
+  uses_third_party_model: true         # hosted LLM API
+  model_type: llm_rag
+  training_on_user_data: false         # no fine-tuning on client data
+  user_facing: true
+  generates_content: true
+  data_crosses_border: true            # model API hosted outside the Kingdom
+  affects_legal_rights: false
+  used_in_employment_decisions: false
+  biometric: false
+  critical_infrastructure: false
+  social_scoring: false
+  emotion_inference_workplace: false
+
+control_status:
+  # --- ISO/IEC 42001 ---
+  ISO42001-A.2.2: missing
+  ISO42001-A.2.4: missing
+  ISO42001-A.3.2: partial
+  ISO42001-A.3.3: missing
+  ISO42001-A.4.2: implemented
+  ISO42001-A.4.3: partial
+  ISO42001-A.4.4: implemented
+  ISO42001-A.5.2: missing
+  ISO42001-A.5.4: missing
+  ISO42001-A.6.1.2: implemented
+  ISO42001-A.6.2.2: implemented
+  ISO42001-A.6.2.4: implemented
+  ISO42001-A.6.2.6: partial
+  ISO42001-A.6.2.7: implemented
+  ISO42001-A.6.2.8: implemented
+  ISO42001-A.7.4: implemented
+  ISO42001-A.7.5: partial
+  ISO42001-A.8.2: partial
+  ISO42001-A.8.3: partial
+  ISO42001-A.9.2: partial
+  ISO42001-A.10.2: partial
+
+  # --- SDAIA AI Ethics Principles ---
+  SDAIA-01.1: missing
+  SDAIA-01.2: implemented
+  SDAIA-02.1: partial
+  SDAIA-02.2: implemented
+  SDAIA-02.3: partial
+  SDAIA-03.1: implemented
+  SDAIA-03.2: implemented
+  SDAIA-04.1: implemented
+  SDAIA-05.1: implemented
+  SDAIA-05.2: implemented
+  SDAIA-05.3: partial
+  SDAIA-06.1: partial
+  SDAIA-06.2: implemented
+  SDAIA-07.1: partial
+  SDAIA-07.2: implemented
+
+  # --- PDPL ---
+  PDPL-01: partial
+  PDPL-02: partial
+  PDPL-03: missing
+  PDPL-04: missing
+  PDPL-05: partial
+  PDPL-06: missing
+  PDPL-07: partial
+  PDPL-08: missing
+  PDPL-10: missing
+
+  # --- EU AI Act ---
+  EUAIACT-T1: partial
+  EUAIACT-T2: missing
+  EUAIACT-P1: implemented
+
+notes:
+  ISO42001-A.6.2.4: >
+    A 200-case acceptance test suite covers retrieval grounding and refusal
+    behaviour. Results are recorded per release. This is the strongest control
+    in the system and the reason the reliability theme scores well.
+  ISO42001-A.6.2.8: >
+    Full audit trail over tenancy and contract actions, including which records
+    the assistant retrieved for each answer.
+  SDAIA-05.2: >
+    The assistant is tested for fabrication specifically: it declines when the
+    retrieved records do not support an answer rather than inferring one.
+  PDPL-04: >
+    Deletion is implemented for primary records but has not been proven across
+    the retrieval index and conversation logs. This is the highest-priority
+    engineering gap.
+  PDPL-06: >
+    Prompts containing tenant personal data reach a model API hosted outside
+    the Kingdom. No transfer assessment exists. Treated as the highest-priority
+    legal gap.
+  ISO42001-A.2.2: >
+    The client is a family business with no prior governance documentation. The
+    policy layer is genuinely absent rather than undocumented — this is typical
+    of the segment and is the bulk of the remediation effort.
